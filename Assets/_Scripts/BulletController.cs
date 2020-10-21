@@ -27,7 +27,7 @@ using UnityEngine;
 /** Class to control bullet behaviour, inherits from MonoBehaviour and IApplyDamage. */
 public class BulletController : MonoBehaviour, IApplyDamage
 {
-    public float verticalSpeed;
+    public float horizontalSpeed;
     public float horizontalBoundary;
     public BulletManager bulletManager;
     public int damage;
@@ -49,7 +49,7 @@ public class BulletController : MonoBehaviour, IApplyDamage
     /** Takes the bullet's position and moves it to a new vector. */
     private void _Move()
     {
-        transform.position += new Vector3(verticalSpeed, 0.0f, 0.0f) * Time.deltaTime;
+        transform.position += new Vector3(horizontalSpeed, 0.0f, 0.0f) * Time.deltaTime;
     }
 
     /** Checks if the bullets are within the horizontal boundary at the right of the screen. */
