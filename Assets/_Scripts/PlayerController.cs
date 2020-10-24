@@ -1,9 +1,36 @@
-﻿using System.Collections;
+﻿/************************************************************************
+* Project            : GAME2014 Midterm
+*
+* Program name       : "GAME2014-F2020-MidTerm-101187910"
+*
+* Author             : Tom Tsiliopoulos / David Gasinec
+* 
+* Student Number     : 101187910
+*
+* Date created       : 20/10/03
+*
+* Description        : Controls the behaviour of the player (ship).
+* 
+* Source file        : PlayerController.cs
+*
+* Last modified      : 20/10/20
+*
+*
+* Revision History   :
+*
+* Date        Author Ref    Revision (Date in YYYYMMDD format) 
+* 20/10/20    David Gasinec        Edited script.  
+*
+|**********************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 
+
+/** Class to control player behaviour, inherits from MonoBehaviour. */
 public class PlayerController : MonoBehaviour
 {
     public BulletManager bulletManager;
@@ -30,15 +57,17 @@ public class PlayerController : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    /** Moves, checks if the player is within bounds, and fires bullets with each update call. */
     void Update()
     {
+        // Update is called once per frame
         _Move();
         _CheckBounds();
         _FireBullet();
     }
 
-     private void _FireBullet()
+    /** Fires the players bullet from the ship. */
+    private void _FireBullet()
     {
         // delay bullet firing 
         if(Time.frameCount % 60 == 0 && bulletManager.HasBullets())
@@ -47,6 +76,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    /** Moves the players ship. */
     private void _Move()
     {
         float direction = 0.0f;
@@ -75,9 +106,7 @@ public class PlayerController : MonoBehaviour
 
         if (m_touchesEnded.y != 0.0f)
         {
-          transform.position = new Vector2(Mathf.Lerp(transform.position.y, m_touchesEnded.y, horizontalTValue), transform.position.x);
-    
-           //transform.position = new Vector2(transform.position.x, m_touchesEnded.y);
+          transform.position = new Vector2(transform.position.x, Mathf.Lerp(transform.position.y, m_touchesEnded.y, horizontalTValue));
         }
         else
         {
@@ -87,6 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /** Checks to see if the players ship has hit the top or bottom of the screen. */
     private void _CheckBounds()
     {
         // check upper bounds

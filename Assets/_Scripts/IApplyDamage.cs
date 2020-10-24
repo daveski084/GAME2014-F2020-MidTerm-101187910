@@ -9,7 +9,9 @@
 *
 * Date created       : 20/10/03
 *
-* Description        : Apply's damage.
+* Description        : Interface, Apply's damage.
+* 
+* Source file        : IApplyDamage.cs
 *
 * Last modified      : 20/10/20
 *
